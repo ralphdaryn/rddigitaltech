@@ -1,7 +1,7 @@
-/* Tailwind v4: one import to load base, components, utilities */
-@import "tailwindcss";
+@use "sass:meta";
+@include meta.load-css("tailwindcss");
 
-/* Your brand tokens + minimal base */
+/* ---- Your tokens & global styles ---- */
 :root {
   --rd-navy: #0d1b2a;
   --rd-electric: #4cc9f0;
@@ -9,10 +9,7 @@
   --rd-bg: #ffffff;
 }
 
-html,
-body {
-  height: 100%;
-}
+html, body { height: 100%; }
 body {
   color: var(--rd-text);
   background: var(--rd-bg);
@@ -20,17 +17,8 @@ body {
   line-height: 1.6;
 }
 
-/* (Optional) focus outlines */
+/* Focus outlines */
 :where(a, button, [role="button"], input, select, textarea):focus-visible {
   outline: 2px solid var(--rd-electric);
   outline-offset: 2px;
 }
-
-/* If you want BEM helpers that use @apply, you can add them here.
-   With v4, @apply works as long as "tailwindcss" is imported above. */
-/*
-.hdr__link { @apply rounded-lg px-3 py-2 hover:bg-black/5; }
-.card      { @apply rounded-2xl border border-black/10 p-5; }
-.card__title { @apply text-lg font-semibold; }
-.card__desc  { @apply mt-2 text-gray-600; }
-*/
