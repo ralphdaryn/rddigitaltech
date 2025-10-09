@@ -3,13 +3,16 @@
 
 /* ---- Your tokens & global styles ---- */
 :root {
-  --rd-navy: #0d1b2a;
-  --rd-electric: #4cc9f0;
+  --rd-navy: #0e2034;
+  --rd-electric: #15b7e8;
   --rd-text: #0b0b0b;
   --rd-bg: #ffffff;
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 body {
   color: var(--rd-text);
   background: var(--rd-bg);
