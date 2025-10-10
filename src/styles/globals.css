@@ -1,7 +1,6 @@
-@use "sass:meta";
-@include meta.load-css("tailwindcss");
+@import "tailwindcss";
 
-/* ---- Your tokens & global styles ---- */
+/* Your global tokens */
 :root {
   --rd-navy: #0e2034;
   --rd-electric: #15b7e8;
@@ -16,11 +15,8 @@ body {
 body {
   color: var(--rd-text);
   background: var(--rd-bg);
-  font-size: 16px;
   line-height: 1.6;
 }
-
-/* Focus outlines */
 :where(a, button, [role="button"], input, select, textarea):focus-visible {
   outline: 2px solid var(--rd-electric);
   outline-offset: 2px;
