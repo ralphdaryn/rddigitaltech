@@ -13,7 +13,7 @@ export default function Home() {
                        text-[var(--rd-electric)] leading-tight
                        text-[clamp(1.125rem,3.2vw,2.25rem)]"
           >
-            RD DIGITAL TECH
+            RD DIGITECH
           </p>
 
           {/* Headline */}

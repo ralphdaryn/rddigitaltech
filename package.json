@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo & sleep 1 && open http://localhost:3000",
+    "dev": "concurrently -n server,open \"next dev -p 3000\" \"wait-on http://localhost:3000 && open http://localhost:3000 && sleep 999999\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predev": "kill-port 3000 || true"
   },
   "dependencies": {
     "next": "15.5.4",
@@ -19,10 +20,13 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
+    "kill-port": "^2.0.1",
     "sass": "^1.93.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wait-on": "^9.0.1"
   }
 }
