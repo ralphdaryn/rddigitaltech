@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import Header from "@/components/Header/Header";
+import Header from "@/components/Header";
 
 export const metadata = {
   title: "RD Digital Tech",

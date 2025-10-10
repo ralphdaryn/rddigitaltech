@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Container from "../Container/Container";
+import Container from "../components/Container";
 
 const NAV = [
   { href: "/", label: "Home" },
