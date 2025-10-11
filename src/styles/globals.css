@@ -9,7 +9,7 @@
   --rd-green: #30db8d; /* tech green */
 
   /* surfaces */
-  --rd-bg: #f8f8f8; /* page background (requested) */
+  --rd-bg: #f8f8f8; /* page background (lighter) */
   --rd-surface: #ffffff; /* cards/panels */
   --rd-muted: #6b7280; /* secondary text on light panels */
   --rd-border: rgba(2, 6, 23, 0.08);
@@ -29,12 +29,12 @@
     ),
     radial-gradient(
       600px 340px at 15% 10%,
-      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.16),
       transparent 60%
     ),
     linear-gradient(180deg, var(--rd-cyan) 0%, var(--rd-navy) 100%);
 
-  /* subtle glass sheen for panels */
+  /* subtle glass sheen for panels if used on blue */
   --rd-panel: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.02),
@@ -49,54 +49,40 @@ body {
 }
 
 body {
-  /* Use Futura everywhere (from next/font/local) */
   font-family: var(--font-futura), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
     "Apple Color Emoji", "Segoe UI Emoji";
   background: var(--rd-bg);
   color: var(--rd-ink);
-  line-height: 1.55;
-  font-weight: 400; /* regular by default */
+  font-size: 17px; /* ↑ subtle bump */
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typographic utilities (so you can force weights anywhere) */
-.fw-light {
-  font-weight: 300;
-}
-.fw-regular {
-  font-weight: 400;
-}
-.fw-bold {
-  font-weight: 700;
-}
-.fw-heavy {
-  font-weight: 800;
-}
-
-/* Headings — crisp + futuristic tracking */
+/* Headings: simple + consistent */
 h1,
 h2,
 h3 {
   letter-spacing: -0.01em;
+  font-weight: 600;
 }
 h1 {
-  font-weight: 700;
-} /* Bold */
-h2,
-h3 {
-  font-weight: 700;
-} /* Bold */
+  font-size: clamp(2.25rem, 4.8vw, 3.8rem); /* ↑ ~10% */
+  line-height: 1.08;
+}
+h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.3rem); /* ↑ gentle bump */
+}
 
-/* Eyebrow (brand label) — ALL CAPS, bold Futura */
+/* Eyebrow (brand label) — slightly bigger */
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  font-weight: 700; /* Futura Bold */
-  font-size: clamp(0.72rem, 0.7rem + 0.25vw, 0.9rem);
-  opacity: 0.98;
-  color: #e9f6ff; /* soft on blue */
+  font-weight: 700; /* bold for Futura Bold look */
+  font-size: clamp(0.78rem, 0.78rem + 0.22vw, 0.9rem); /* ↑ hair larger */
+  opacity: 0.95;
+  color: #e8f6ff; /* soft on blue */
 }
 
 /* Layout helpers */
@@ -131,17 +117,19 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1.05rem;
   border-radius: 12px;
-  font-weight: 700; /* strong CTAs */
+  font-weight: 700;
   transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
+  text-decoration: none;
+  font-size: 0.98rem; /* tiny bump */
 }
 .btn:focus-visible {
   outline: 0;
   box-shadow: 0 0 0 4px var(--rd-ring);
 }
 
-/* Primary: tech green */
+/* Primary: tech green (pops on blue + white) */
 .btn-primary {
   background: var(--rd-green);
   color: #052716;
@@ -195,4 +183,18 @@ h3 {
   height: 1px;
   background: rgba(255, 255, 255, 0.25);
   margin: 2rem 0;
+}
+
+/* Optional weight utilities (map to your Futura files) */
+.fw-light {
+  font-weight: 300;
+}
+.fw-regular {
+  font-weight: 400;
+}
+.fw-bold {
+  font-weight: 700;
+}
+.fw-extrabold {
+  font-weight: 800;
 }

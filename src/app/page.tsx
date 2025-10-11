@@ -8,16 +8,15 @@ export default function Home() {
       {/* HERO — techy cyan→navy with soft green glow */}
       <section className="section bg-hero on-blue">
         <Container className="_container text-center md:text-left">
-          {/* Eyebrow must be Futura Bold */}
           <p className="eyebrow">RD DIGITAL TECHNOLOGY</p>
 
-          <h1 className="mt-3 text-4xl md:text-6xl fw-bold leading-[1.05]">
+          <h1 className="mt-3 font-extrabold leading-[1.05] text-[clamp(2.3rem,4.9vw,3.9rem)]">
             Websites.
             <br className="hidden sm:block" /> Automations.
             <br className="hidden sm:block" /> Analytics.
           </h1>
 
-          <p className="mt-5 max-w-2xl text-[17px] fw-light opacity-95">
+          <p className="mt-5 max-w-2xl fw-light text-[17px] opacity-95">
             We build fast, data-driven websites that automate your workflows and
             deliver results.
           </p>
@@ -45,7 +44,7 @@ export default function Home() {
       <section className="section">
         <Container className="_container">
           <div className="panel p-6 md:p-8">
-            <h2 className="text-2xl md:text-3xl fw-bold">What we do</h2>
+            <h2>What we do</h2>
             <p className="mt-3 max-w-2xl fw-light text-[color:var(--rd-muted)]">
               We design fast, professional websites, set up simple automations
               that save time, and add clear analytics—so you can focus on the
@@ -54,7 +53,7 @@ export default function Home() {
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               <article className="card">
-                <h3 className="text-lg fw-bold">Websites</h3>
+                <h3 className="fw-bold">Websites</h3>
                 <ul className="mt-2 space-y-1 text-sm fw-light text-[color:var(--rd-muted)]">
                   <li>Next.js/React, responsive, fast</li>
                   <li>Forms + email, SEO basics</li>
@@ -63,7 +62,7 @@ export default function Home() {
               </article>
 
               <article className="card">
-                <h3 className="text-lg fw-bold">Automation &amp; AI</h3>
+                <h3 className="fw-bold">Automation &amp; AI</h3>
                 <ul className="mt-2 space-y-1 text-sm fw-light text-[color:var(--rd-muted)]">
                   <li>Zapier/Make workflows</li>
                   <li>Email/SMS sequences</li>
@@ -72,7 +71,7 @@ export default function Home() {
               </article>
 
               <article className="card">
-                <h3 className="text-lg fw-bold">Analytics</h3>
+                <h3 className="fw-bold">Analytics</h3>
                 <ul className="mt-2 space-y-1 text-sm fw-light text-[color:var(--rd-muted)]">
                   <li>GA4 events &amp; conversions</li>
                   <li>Dashboard reporting</li>
@@ -94,7 +93,7 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* REVIEWS */}
+      {/* REVIEWS — 2 clean cards */}
       <Reviews
         items={[
           {
@@ -115,9 +114,7 @@ export default function Home() {
       {/* CTA on light bg */}
       <section className="section">
         <Container className="_container text-center md:text-left">
-          <h2 className="text-2xl md:text-3xl fw-bold">
-            Ready to start your project?
-          </h2>
+          <h2>Ready to start your project?</h2>
           <p className="mt-2 fw-light text-[color:var(--rd-muted)]">
             We build and automate systems that work — with clear goals and
             results.

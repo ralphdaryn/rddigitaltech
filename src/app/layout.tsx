@@ -2,18 +2,15 @@
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import localFont from "next/font/local";
 import type { ReactNode } from "react";
+import { Outfit } from "next/font/google";
 
-const futura = localFont({
-  src: [
-    { path: "../fonts/FuturaLT-Light.woff2", weight: "300", style: "normal" },
-    { path: "../fonts/FuturaLT.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/FuturaLT-Bold.woff2", weight: "700", style: "normal" },
-    { path: "../fonts/FuturaLT-Heavy.woff2", weight: "800", style: "normal" },
-  ],
-  variable: "--font-futura",
+// One simple, modern font for the whole site
+const outfit = Outfit({
+  subsets: ["latin"],
   display: "swap",
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"], // light → bold
 });
 
 export const metadata = {
@@ -24,9 +21,8 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${futura.variable} antialiased`}>
+      <body className={`${outfit.variable} antialiased`}>
         <Header />
-        {/* removed pt-14 md:pt-16 */}
         <main>{children}</main>
         <Footer />
       </body>
