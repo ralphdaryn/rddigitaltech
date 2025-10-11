@@ -1,23 +1,198 @@
 @import "tailwindcss";
 
-/* Your global tokens */
+/* ===== RD palette (techy blue + green) ===== */
 :root {
-  --rd-navy: #0e2034;
-  --rd-electric: #15b7e8;
-  --rd-text: #0b0b0b;
-  --rd-bg: #ffffff;
+  /* brand core */
+  --rd-ink: #1f2b37; /* headings/body on light panels */
+  --rd-cyan: #44a5bd; /* cyan-teal */
+  --rd-navy: #012158; /* deep navy */
+  --rd-green: #30db8d; /* tech green */
+
+  /* surfaces */
+  --rd-bg: #f8f8f8; /* page background (requested) */
+  --rd-surface: #ffffff; /* cards/panels */
+  --rd-muted: #6b7280; /* secondary text on light panels */
+  --rd-border: rgba(2, 6, 23, 0.08);
+
+  /* effects */
+  --rd-radius: 14px;
+  --rd-section-y: clamp(3rem, 6vw, 6rem);
+  --rd-ring: rgba(68, 165, 189, 0.35);
+
+  /* HERO gradient:
+     - base: cyan → deep navy
+     - accent: a soft tech-green radial bloom */
+  --rd-hero: radial-gradient(
+      900px 520px at 78% -10%,
+      rgba(48, 219, 141, 0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      600px 340px at 15% 10%,
+      rgba(255, 255, 255, 0.12),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--rd-cyan) 0%, var(--rd-navy) 100%);
+
+  /* subtle glass sheen for panels */
+  --rd-panel: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
 }
 
+/* ===== Base ===== */
 html,
 body {
   height: 100%;
 }
+
 body {
-  color: var(--rd-text);
+  /* Use Futura everywhere (from next/font/local) */
+  font-family: var(--font-futura), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Apple Color Emoji", "Segoe UI Emoji";
   background: var(--rd-bg);
-  line-height: 1.6;
+  color: var(--rd-ink);
+  line-height: 1.55;
+  font-weight: 400; /* regular by default */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Typographic utilities (so you can force weights anywhere) */
+.fw-light {
+  font-weight: 300;
+}
+.fw-regular {
+  font-weight: 400;
+}
+.fw-bold {
+  font-weight: 700;
+}
+.fw-heavy {
+  font-weight: 800;
+}
+
+/* Headings — crisp + futuristic tracking */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+}
+h1 {
+  font-weight: 700;
+} /* Bold */
+h2,
+h3 {
+  font-weight: 700;
+} /* Bold */
+
+/* Eyebrow (brand label) — ALL CAPS, bold Futura */
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 700; /* Futura Bold */
+  font-size: clamp(0.72rem, 0.7rem + 0.25vw, 0.9rem);
+  opacity: 0.98;
+  color: #e9f6ff; /* soft on blue */
+}
+
+/* Layout helpers */
+.section {
+  padding-block: var(--rd-section-y);
+}
+._container {
+  max-width: 72rem; /* ~1152px */
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Panels & cards */
+.panel {
+  background: var(--rd-surface);
+  color: var(--rd-ink);
+  border: 1px solid var(--rd-border);
+  border-radius: var(--rd-radius);
+  box-shadow: 0 0 0 1px rgba(2, 6, 23, 0.04), 0 12px 34px rgba(2, 6, 23, 0.08);
+}
+.card {
+  background: var(--rd-surface);
+  color: var(--rd-ink);
+  border: 1px solid var(--rd-border);
+  border-radius: var(--rd-radius);
+  padding: 1rem;
+  box-shadow: 0 0 0 1px rgba(2, 6, 23, 0.04), 0 12px 34px rgba(2, 6, 23, 0.06);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-weight: 700; /* strong CTAs */
+  transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
+}
+.btn:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 4px var(--rd-ring);
+}
+
+/* Primary: tech green */
+.btn-primary {
+  background: var(--rd-green);
+  color: #052716;
+}
+.btn-primary:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* Ghost on light */
+.btn-ghost {
+  border: 1px solid var(--rd-border);
+  background: transparent;
+  color: var(--rd-ink);
+}
+.btn-ghost:hover {
+  background: rgba(2, 6, 23, 0.04);
+}
+
+/* Ghost on blue */
+.on-blue .btn-ghost {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.on-blue .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Focus */
 :where(a, button, [role="button"], input, select, textarea):focus-visible {
-  outline: 2px solid var(--rd-electric);
+  outline: 2px solid var(--rd-cyan);
   outline-offset: 2px;
+}
+
+/* Gradient helpers */
+.bg-hero {
+  background: var(--rd-hero);
+  color: #fff;
+}
+.bg-panel {
+  background: var(--rd-panel);
+}
+
+/* Dividers */
+.hr {
+  height: 1px;
+  background: var(--rd-border);
+  margin: 2rem 0;
+}
+.hr-on-blue {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 2rem 0;
 }

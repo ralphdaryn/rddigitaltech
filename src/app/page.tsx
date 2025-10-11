@@ -4,50 +4,36 @@ import Reviews from "@/components/Reviews";
 
 export default function Home() {
   return (
-    <main className="home">
-      {/* Hero — mobile first (stack) */}
-      <section className="home__hero bg-[var(--rd-navy)] text-white">
-        <Container className="py-14 md:py-24 text-center md:text-left">
-          {/* Brand eyebrow (fluid size) */}
-          <p
-            className="home__eyebrow uppercase font-semibold tracking-[0.25em]
-                       text-[var(--rd-electric)] leading-tight
-                       text-[clamp(1.125rem,3.2vw,2.25rem)]"
-          >
-            RD DIGITECH
-          </p>
+    <main>
+      {/* HERO — techy cyan→navy with soft green glow */}
+      <section className="section bg-hero on-blue">
+        <Container className="_container text-center md:text-left">
+          {/* Eyebrow must be Futura Bold */}
+          <p className="eyebrow">RD DIGITAL TECHNOLOGY</p>
 
-          {/* Headline */}
-          <h1 className="home__title mt-4 text-4xl font-bold leading-[1.05] md:text-6xl">
+          <h1 className="mt-3 text-4xl md:text-6xl fw-bold leading-[1.05]">
             Websites.
             <br className="hidden sm:block" /> Automations.
             <br className="hidden sm:block" /> Analytics.
           </h1>
 
-          {/* Subtitle */}
-          <p className="home__subtitle mt-6 max-w-3xl text-white/90 text-base md:text-lg leading-relaxed">
+          <p className="mt-5 max-w-2xl text-[17px] fw-light opacity-95">
             We build fast, data-driven websites that automate your workflows and
             deliver results.
           </p>
 
-          {/* CTA row */}
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
-            {/* Start a Project = rd-electric */}
             <Link
               href="/contact"
+              className="btn btn-primary"
               aria-label="Start a Project"
-              className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium
-                         bg-[var(--rd-electric)] text-[var(--rd-navy)] hover:opacity-90 transition"
             >
               Start a Project
             </Link>
-
-            {/* Contact Us (ghost on dark bg) */}
             <Link
               href="/contact"
+              className="btn btn-ghost"
               aria-label="Contact Us"
-              className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium
-                         border border-white/30 text-white hover:bg-white/10 transition"
             >
               Contact Us
             </Link>
@@ -55,34 +41,60 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* WHAT WE DO */}
-      <section className="home__services">
-        <Container className="py-12 md:py-16">
-          <h2 className="home__h2 text-2xl font-semibold md:text-3xl">
-            What we do
-          </h2>
+      {/* WHAT WE DO — white panel on light page bg */}
+      <section className="section">
+        <Container className="_container">
+          <div className="panel p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl fw-bold">What we do</h2>
+            <p className="mt-3 max-w-2xl fw-light text-[color:var(--rd-muted)]">
+              We design fast, professional websites, set up simple automations
+              that save time, and add clear analytics—so you can focus on the
+              work that matters.
+            </p>
 
-          <p className="mt-4 max-w-3xl text-base md:text-lg leading-relaxed opacity-80">
-            We design fast, professional websites, set up simple automations
-            that save time, and add clear analytics—so you can focus on the work
-            that matters.
-          </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              <article className="card">
+                <h3 className="text-lg fw-bold">Websites</h3>
+                <ul className="mt-2 space-y-1 text-sm fw-light text-[color:var(--rd-muted)]">
+                  <li>Next.js/React, responsive, fast</li>
+                  <li>Forms + email, SEO basics</li>
+                  <li>Core Web Vitals pass</li>
+                </ul>
+              </article>
 
-          <div className="mt-6">
-            {/* View Work — ghost style adapted for light background */}
-            <Link
-              href="/work"
-              aria-label="View Work"
-              className="inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium
-                         border border-black/20 text-[var(--rd-text)] hover:bg-black/5 transition"
-            >
-              View Work
-            </Link>
+              <article className="card">
+                <h3 className="text-lg fw-bold">Automation &amp; AI</h3>
+                <ul className="mt-2 space-y-1 text-sm fw-light text-[color:var(--rd-muted)]">
+                  <li>Zapier/Make workflows</li>
+                  <li>Email/SMS sequences</li>
+                  <li>Chat widgets/assistants</li>
+                </ul>
+              </article>
+
+              <article className="card">
+                <h3 className="text-lg fw-bold">Analytics</h3>
+                <ul className="mt-2 space-y-1 text-sm fw-light text-[color:var(--rd-muted)]">
+                  <li>GA4 events &amp; conversions</li>
+                  <li>Dashboard reporting</li>
+                  <li>Weekly email summaries</li>
+                </ul>
+              </article>
+            </div>
+
+            <div className="mt-8">
+              <Link
+                href="/work"
+                className="btn btn-ghost"
+                aria-label="View Work"
+              >
+                View Work
+              </Link>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* REVIEWS — exactly two clean cards */}
+      {/* REVIEWS */}
       <Reviews
         items={[
           {
@@ -100,20 +112,20 @@ export default function Home() {
         ]}
       />
 
-      {/* CTA — clear contrast, thumb-friendly */}
-      <section className="home__cta bg-black text-white">
-        <Container className="py-12 md:py-16">
-          <h2 className="home__h2 text-2xl font-semibold md:text-3xl">
+      {/* CTA on light bg */}
+      <section className="section">
+        <Container className="_container text-center md:text-left">
+          <h2 className="text-2xl md:text-3xl fw-bold">
             Ready to start your project?
           </h2>
-          <p className="home__p mt-2 text-white/80">
+          <p className="mt-2 fw-light text-[color:var(--rd-muted)]">
             We build and automate systems that work — with clear goals and
             results.
           </p>
           <Link
             href="/contact"
+            className="btn btn-primary mt-6"
             aria-label="Get a quote"
-            className="mt-6 inline-block rounded-xl bg-white px-4 py-3 font-medium text-black"
           >
             Get a quote
           </Link>

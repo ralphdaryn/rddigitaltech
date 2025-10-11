@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Container from "../components/Container";
+import Container from "@/components/Container";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -15,27 +15,21 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const html = document.documentElement;
-
-    if (open) {
-      html.classList.add("overflow-hidden");
-    } else {
-      html.classList.remove("overflow-hidden");
-    }
-
-    // cleanup if component unmounts while menu is open
-    return () => html.classList.remove("overflow-hidden");
+    if (typeof document === "undefined") return;
+    const root = document.documentElement;
+    root.classList.toggle("overflow-hidden", open);
+    return () => root.classList.remove("overflow-hidden");
   }, [open]);
 
   return (
-    <header className="hdr sticky top-0 z-50 border-b border-black/10 bg-white">
-      <Container className="flex items-center justify-between py-3">
+    <header className="sticky top-0 z-50 border-b border-[var(--rd-border)] bg-white/85 backdrop-blur">
+      <Container className="_container flex items-center justify-between py-3">
         <Link
           href="/"
           onClick={() => setOpen(false)}
-          className="font-semibold tracking-wide"
+          className="fw-bold tracking-wide"
         >
-          RD DIGITECH
+          RD DIGITAL TECH
         </Link>
 
         {/* Mobile burger */}
@@ -69,12 +63,12 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:block" aria-label="Primary">
-          <ul className="flex items-center gap-3">
+          <ul className="flex items-center gap-2">
             {NAV.map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
-                  className="rounded-lg px-3 py-2 hover:bg-black/5"
+                  className="rounded-lg px-3 py-2 hover:bg-black/5 fw-regular"
                 >
                   {label}
                 </Link>
@@ -84,27 +78,27 @@ export default function Header() {
         </nav>
       </Container>
 
-      {/* Mobile overlay */}
+      {/* Mobile menu */}
       <nav
         id="site-nav"
         aria-label="Mobile"
         className={[
           "md:hidden fixed inset-x-0 top-14 z-40",
-          "border-t border-black/10 bg-white/95 backdrop-blur",
+          "border-t border-[var(--rd-border)] bg-white/95 backdrop-blur",
           "transition-all duration-200",
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-2 opacity-0",
         ].join(" ")}
       >
-        <Container className="py-3">
+        <Container className="_container py-3">
           <ul className="grid gap-1">
             {NAV.map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2 hover:bg-black/5"
+                  className="block rounded-lg px-3 py-2 hover:bg-black/5 fw-regular"
                 >
                   {label}
                 </Link>
