@@ -35,7 +35,7 @@ export default function Header() {
           onClick={() => setOpen(false)}
           className="font-semibold tracking-wide"
         >
-          RD DIGITAL TECH
+          RD DIGITECH
         </Link>
 
         {/* Mobile burger */}

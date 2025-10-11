@@ -1,5 +1,6 @@
 import Link from "next/link";
-import Container from "../components/Container";
+import Container from "@/components/Container";
+import Reviews from "@/components/Reviews";
 
 export default function Home() {
   return (
@@ -80,6 +81,24 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      {/* REVIEWS — exactly two clean cards */}
+      <Reviews
+        items={[
+          {
+            quote:
+              "Clean build and fast turnaround. Our contact form finally routes correctly—exactly what we needed.",
+            author: "J. Singh",
+            meta: "Owner, Lakeside Fitness",
+          },
+          {
+            quote:
+              "Automations save us hours each week. Leads go straight to our sheet and we get a weekly summary.",
+            author: "M. Patel",
+            meta: "Clinic Manager",
+          },
+        ]}
+      />
 
       {/* CTA — clear contrast, thumb-friendly */}
       <section className="home__cta bg-black text-white">

@@ -8,11 +8,11 @@ export default function Footer() {
     <footer className="mt-16 border-t border-black/10 bg-white">
       <Container className="py-10">
         {/* Top grid */}
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid gap-[calc(var(--spacing)*6)] md:grid-cols-4">
           {/* Brand */}
           <div>
             <h3 className="text-sm font-semibold tracking-wider text-[var(--rd-electric)]">
-              RD DIGITAL TECH
+              RD DIGITECH
             </h3>
             <p className="mt-3 max-w-xs text-sm opacity-80">
               Websites. Automations. Analytics.
@@ -97,18 +97,10 @@ export default function Footer() {
         <div className="my-8 h-px bg-black/10" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-3 items-start justify-between md:flex-row md:items-center">
-          <p className="text-xs opacity-70">
-            © {year} RD Digital Tech. All rights reserved.
+        <div className="flex flex-col gap-3 items-center justify-between md:flex-row md:items-center">
+          <p className="text-xs opacity-70 text-center w-full">
+            © {year} RD Digital Technology. All rights reserved.
           </p>
-          <div className="flex gap-4 text-xs">
-            <Link className="hover:underline" href="/privacy">
-              Privacy
-            </Link>
-            <Link className="hover:underline" href="/terms">
-              Terms
-            </Link>
-          </div>
         </div>
       </Container>
     </footer>
