@@ -6,7 +6,11 @@
   --rd-ink: #1f2b37; /* headings/body on light panels */
   --rd-cyan: #44a5bd; /* cyan-teal */
   --rd-navy: #012158; /* deep navy */
-  --rd-green: #30db8d; /* tech green */
+  --rd-green: #30db8d; /* primary tech green */
+
+  /* NEW accents you asked for */
+  --rd-blue: #4f76f6; /* vivid blue (links/buttons) */
+  --rd-mint: #77f2a1; /* mint accent for text/badges */
 
   /* surfaces */
   --rd-bg: #f8f8f8; /* page background (lighter) */
@@ -54,7 +58,7 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji";
   background: var(--rd-bg);
   color: var(--rd-ink);
-  font-size: 17px; /* ↑ subtle bump */
+  font-size: 17px; /* subtle bump */
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -68,19 +72,19 @@ h3 {
   font-weight: 600;
 }
 h1 {
-  font-size: clamp(2.25rem, 4.8vw, 3.8rem); /* ↑ ~10% */
+  font-size: clamp(2.25rem, 4.8vw, 3.8rem);
   line-height: 1.08;
 }
 h2 {
-  font-size: clamp(1.5rem, 2.6vw, 2.3rem); /* ↑ gentle bump */
+  font-size: clamp(1.5rem, 2.6vw, 2.3rem);
 }
 
 /* Eyebrow (brand label) — slightly bigger */
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  font-weight: 700; /* bold for Futura Bold look */
-  font-size: clamp(0.78rem, 0.78rem + 0.22vw, 0.9rem); /* ↑ hair larger */
+  font-weight: 700; /* Futura Bold look */
+  font-size: clamp(0.78rem, 0.78rem + 0.22vw, 0.9rem);
   opacity: 0.95;
   color: #e8f6ff; /* soft on blue */
 }
@@ -90,7 +94,7 @@ h2 {
   padding-block: var(--rd-section-y);
 }
 ._container {
-  max-width: 72rem; /* ~1152px */
+  max-width: 72rem;
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
@@ -112,7 +116,7 @@ h2 {
   box-shadow: 0 0 0 1px rgba(2, 6, 23, 0.04), 0 12px 34px rgba(2, 6, 23, 0.06);
 }
 
-/* Buttons */
+/* Buttons (base) */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -122,14 +126,14 @@ h2 {
   font-weight: 700;
   transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
   text-decoration: none;
-  font-size: 0.98rem; /* tiny bump */
+  font-size: 0.98rem;
 }
 .btn:focus-visible {
   outline: 0;
   box-shadow: 0 0 0 4px var(--rd-ring);
 }
 
-/* Primary: tech green (pops on blue + white) */
+/* Primary: tech green */
 .btn-primary {
   background: var(--rd-green);
   color: #052716;
@@ -156,6 +160,53 @@ h2 {
 }
 .on-blue .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== NEW: Accent utilities (use anywhere, no markup changes) ===== */
+
+/* Blue accent button */
+.btn-accent {
+  background: var(--rd-blue);
+  color: #0a1330;
+}
+.btn-accent:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* Mint accent button (softer pop) */
+.btn-mint {
+  background: var(--rd-mint);
+  color: #0a301d;
+}
+.btn-mint:hover {
+  opacity: 0.96;
+  transform: translateY(-1px);
+}
+
+/* Inline link accents */
+.link-blue {
+  color: var(--rd-blue);
+  text-underline-offset: 3px;
+}
+.link-blue:hover {
+  text-decoration: underline;
+}
+
+.link-mint {
+  color: var(--rd-mint);
+  text-underline-offset: 3px;
+}
+.link-mint:hover {
+  text-decoration: underline;
+}
+
+/* Accent text helpers (for headings, labels) */
+.text-accent {
+  color: var(--rd-blue);
+}
+.text-mint {
+  color: var(--rd-mint);
 }
 
 /* Focus */
