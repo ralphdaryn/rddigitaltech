@@ -9,9 +9,10 @@ export default function Footer() {
       <Container className="_container py-10">
         <div className="grid gap-8 md:grid-cols-4">
           <div>
-            <h3 className="text-sm fw-bold tracking-wider text-[var(--rd-cyan)]">
-              RD DIGITAL TECH
+            <h3 className="text-sm font-semibold tracking-wider text-[color:var(--rd-ink)]/90">
+              RD DIGITAL TECHNOLOGY
             </h3>
+
             <p className="mt-3 max-w-xs text-sm fw-light text-[color:var(--rd-muted)]">
               Websites. Automations. Analytics.
             </p>
