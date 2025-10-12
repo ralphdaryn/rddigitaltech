@@ -43,6 +43,11 @@ export default function Footer() {
             <h4 className="text-sm fw-bold">Company</h4>
             <ul className="mt-3 space-y-2 text-sm fw-regular">
               <li>
+                <Link className="hover:underline" href="/service">
+                  Service
+                </Link>
+              </li>
+              <li>
                 <Link className="hover:underline" href="/about">
                   About
                 </Link>
@@ -72,19 +77,19 @@ export default function Footer() {
               <li className="flex gap-3 fw-regular">
                 <a
                   className="underline underline-offset-2"
-                  href="https://instagram.com/rddigitaltech"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Instagram
-                </a>
-                <a
-                  className="underline underline-offset-2"
                   href="https://www.linkedin.com/"
                   target="_blank"
                   rel="noreferrer"
                 >
                   LinkedIn
+                </a>
+                <a
+                  className="underline underline-offset-2"
+                  href="https://instagram.com/rddigitaltech"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Instagram
                 </a>
               </li>
             </ul>
