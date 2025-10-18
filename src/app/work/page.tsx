@@ -7,7 +7,7 @@ export default function WorkPage() {
   return (
     <main className="section">
       <Container className="_container">
-        <h1>Case Studies</h1>
+        <h1>Projects</h1>
         <p className="mt-2 text-[color:var(--rd-muted)]">
           Problems solved. Results delivered. Tech that fits your business.
         </p>

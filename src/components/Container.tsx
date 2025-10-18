@@ -1,3 +1,4 @@
+// components/Container.tsx
 import type { ReactNode } from "react";
 
 export default function Container({
@@ -7,5 +8,5 @@ export default function Container({
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={className}>{children}</div>;
+  return <div className={`_container ${className}`}>{children}</div>;
 }
