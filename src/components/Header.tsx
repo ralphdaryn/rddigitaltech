@@ -2,27 +2,27 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Container from "@/components/Container";
 
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
-    const root = document.documentElement;
-    root.classList.toggle("overflow-hidden", open);
-    return () => root.classList.remove("overflow-hidden");
+    document.documentElement.classList.toggle("overflow-hidden", open);
+    return () => document.documentElement.classList.remove("overflow-hidden");
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--rd-border)] bg-white/85 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[var(--rd-border)] bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <Container className="_container flex items-center justify-between py-3">
         <Link
           href="/"
@@ -37,43 +37,47 @@ export default function Header() {
           type="button"
           onClick={() => setOpen((v) => !v)}
           className="relative inline-flex h-11 w-11 items-center justify-center md:hidden"
-          aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-label="Menu"
           aria-expanded={open}
           aria-controls="site-nav"
         >
           <span
-            className={[
-              "absolute block h-0.5 w-6 bg-black transition-all duration-200",
-              open ? "rotate-45" : "-translate-y-2",
-            ].join(" ")}
+            className={`absolute block h-0.5 w-6 bg-black transition-all ${
+              open ? "rotate-45" : "-translate-y-2"
+            }`}
           />
           <span
-            className={[
-              "absolute block h-0.5 w-6 bg-black transition-opacity duration-200",
-              open ? "opacity-0" : "opacity-100",
-            ].join(" ")}
+            className={`absolute block h-0.5 w-6 bg-black transition-opacity ${
+              open ? "opacity-0" : "opacity-100"
+            }`}
           />
           <span
-            className={[
-              "absolute block h-0.5 w-6 bg-black transition-all duration-200",
-              open ? "-rotate-45" : "translate-y-2",
-            ].join(" ")}
+            className={`absolute block h-0.5 w-6 bg-black transition-all ${
+              open ? "-rotate-45" : "translate-y-2"
+            }`}
           />
         </button>
 
         {/* Desktop nav */}
         <nav className="hidden md:block" aria-label="Primary">
           <ul className="flex items-center gap-2">
-            {NAV.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="rounded-lg px-3 py-2 hover:bg-black/5 fw-regular"
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
+            {NAV.map(({ href, label }) => {
+              const isActive =
+                href === "/" ? pathname === "/" : pathname.startsWith(href);
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={`rounded-lg px-3 py-2 fw-regular ${
+                      isActive ? "bg-black/5" : "hover:bg-black/5"
+                    }`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </Container>
@@ -82,14 +86,11 @@ export default function Header() {
       <nav
         id="site-nav"
         aria-label="Mobile"
-        className={[
-          "md:hidden fixed inset-x-0 top-14 z-40",
-          "border-t border-[var(--rd-border)] bg-white/95 backdrop-blur",
-          "transition-all duration-200",
+        className={`md:hidden fixed inset-x-0 top-14 z-40 border-t border-[var(--rd-border)] bg-white/95 backdrop-blur transition-all ${
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-2 opacity-0",
-        ].join(" ")}
+            : "pointer-events-none -translate-y-2 opacity-0"
+        }`}
       >
         <Container className="_container py-3">
           <ul className="grid gap-1">

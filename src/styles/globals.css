@@ -8,7 +8,7 @@
   --rd-navy: #012158; /* deep navy */
   --rd-green: #30db8d; /* primary tech green */
 
-  /* NEW accents you asked for */
+  /* NEW accents */
   --rd-blue: #4f76f6; /* vivid blue (links/buttons) */
   --rd-mint: #77f2a1; /* mint accent for text/badges */
 
@@ -23,9 +23,7 @@
   --rd-section-y: clamp(3rem, 6vw, 6rem);
   --rd-ring: rgba(68, 165, 189, 0.35);
 
-  /* HERO gradient:
-     - base: cyan → deep navy
-     - accent: a soft tech-green radial bloom */
+  /* HERO gradient */
   --rd-hero: radial-gradient(
       900px 520px at 78% -10%,
       rgba(48, 219, 141, 0.28),
@@ -53,7 +51,7 @@ body {
 }
 
 body {
-  font-family: var(--font-futura), ui-sans-serif, system-ui, -apple-system,
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
     "Apple Color Emoji", "Segoe UI Emoji";
   background: var(--rd-bg);
@@ -64,7 +62,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings: simple + consistent */
 h1,
 h2,
 h3 {
@@ -79,14 +76,14 @@ h2 {
   font-size: clamp(1.5rem, 2.6vw, 2.3rem);
 }
 
-/* Eyebrow (brand label) — slightly bigger */
+/* Eyebrow */
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  font-weight: 700; /* Futura Bold look */
+  font-weight: 700;
   font-size: clamp(0.78rem, 0.78rem + 0.22vw, 0.9rem);
   opacity: 0.95;
-  color: #e8f6ff; /* soft on blue */
+  color: #e8f6ff;
 }
 
 /* Layout helpers */
@@ -116,7 +113,7 @@ h2 {
   box-shadow: 0 0 0 1px rgba(2, 6, 23, 0.04), 0 12px 34px rgba(2, 6, 23, 0.06);
 }
 
-/* Buttons (base) */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -132,8 +129,6 @@ h2 {
   outline: 0;
   box-shadow: 0 0 0 4px var(--rd-ring);
 }
-
-/* Primary: tech green */
 .btn-primary {
   background: var(--rd-green);
   color: #052716;
@@ -142,8 +137,6 @@ h2 {
   opacity: 0.95;
   transform: translateY(-1px);
 }
-
-/* Ghost on light */
 .btn-ghost {
   border: 1px solid var(--rd-border);
   background: transparent;
@@ -152,8 +145,6 @@ h2 {
 .btn-ghost:hover {
   background: rgba(2, 6, 23, 0.04);
 }
-
-/* Ghost on blue */
 .on-blue .btn-ghost {
   border-color: rgba(255, 255, 255, 0.35);
   color: #fff;
@@ -162,9 +153,7 @@ h2 {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* ===== NEW: Accent utilities (use anywhere, no markup changes) ===== */
-
-/* Blue accent button */
+/* Accent utilities */
 .btn-accent {
   background: var(--rd-blue);
   color: #0a1330;
@@ -173,8 +162,6 @@ h2 {
   opacity: 0.95;
   transform: translateY(-1px);
 }
-
-/* Mint accent button (softer pop) */
 .btn-mint {
   background: var(--rd-mint);
   color: #0a301d;
@@ -183,8 +170,6 @@ h2 {
   opacity: 0.96;
   transform: translateY(-1px);
 }
-
-/* Inline link accents */
 .link-blue {
   color: var(--rd-blue);
   text-underline-offset: 3px;
@@ -192,7 +177,6 @@ h2 {
 .link-blue:hover {
   text-decoration: underline;
 }
-
 .link-mint {
   color: var(--rd-mint);
   text-underline-offset: 3px;
@@ -200,8 +184,6 @@ h2 {
 .link-mint:hover {
   text-decoration: underline;
 }
-
-/* Accent text helpers (for headings, labels) */
 .text-accent {
   color: var(--rd-blue);
 }
@@ -209,13 +191,11 @@ h2 {
   color: var(--rd-mint);
 }
 
-/* Focus */
+/* Focus & misc */
 :where(a, button, [role="button"], input, select, textarea):focus-visible {
   outline: 2px solid var(--rd-cyan);
   outline-offset: 2px;
 }
-
-/* Gradient helpers */
 .bg-hero {
   background: var(--rd-hero);
   color: #fff;
@@ -223,8 +203,6 @@ h2 {
 .bg-panel {
   background: var(--rd-panel);
 }
-
-/* Dividers */
 .hr {
   height: 1px;
   background: var(--rd-border);
@@ -235,8 +213,6 @@ h2 {
   background: rgba(255, 255, 255, 0.25);
   margin: 2rem 0;
 }
-
-/* Optional weight utilities (map to your Futura files) */
 .fw-light {
   font-weight: 300;
 }

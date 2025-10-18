@@ -12,7 +12,6 @@ export default function Footer() {
             <h3 className="text-sm font-semibold tracking-wider text-[color:var(--rd-ink)]/90">
               RD DIGITAL TECHNOLOGY
             </h3>
-
             <p className="mt-3 max-w-xs text-sm fw-light text-[color:var(--rd-muted)]">
               Websites. Automations. Analytics.
             </p>
@@ -43,13 +42,13 @@ export default function Footer() {
             <h4 className="text-sm fw-bold">Company</h4>
             <ul className="mt-3 space-y-2 text-sm fw-regular">
               <li>
-                <Link className="hover:underline" href="/service">
-                  Service
+                <Link className="hover:underline" href="/services">
+                  Services
                 </Link>
               </li>
               <li>
-                <Link className="hover:underline" href="/about">
-                  About
+                <Link className="hover:underline" href="/work">
+                  Work
                 </Link>
               </li>
               <li>

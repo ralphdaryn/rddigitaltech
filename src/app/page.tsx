@@ -1,46 +1,47 @@
 import Link from "next/link";
 import Container from "@/components/Container";
+import TechStackBar from "@/components/TechStackBar";
 import Reviews from "@/components/Reviews";
 
 export default function Home() {
   return (
     <main>
-      {/* HERO — techy cyan→navy with soft green glow */}
+      {/* HERO */}
       <section className="section bg-hero on-blue">
         <Container className="_container text-center md:text-left">
           <p className="eyebrow">RD DIGITAL TECHNOLOGY</p>
-
           <h1 className="mt-3 font-extrabold leading-[1.05] text-[clamp(2.3rem,4.9vw,3.9rem)]">
             Websites.
             <br className="hidden sm:block" /> Automations.
             <br className="hidden sm:block" /> Analytics.
           </h1>
-
           <p className="mt-5 max-w-2xl fw-light text-[17px] opacity-95">
-            We build fast, data-driven websites that automate your workflows and
-            deliver results.
+            We build fast websites, add simple automations, and set up clear
+            analytics—so you can focus on the work that matters.
           </p>
-
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
             <Link
               href="/contact"
               className="btn btn-primary"
-              aria-label="Start a Project"
+              aria-label="Book a free audit"
             >
-              Start a Project
+              Book a Free Audit
             </Link>
             <Link
-              href="/contact"
+              href="/work"
               className="btn btn-ghost"
-              aria-label="Contact Us"
+              aria-label="See case studies"
             >
-              Contact Us
+              See Case Studies
             </Link>
           </div>
         </Container>
       </section>
 
-      {/* WHAT WE DO — white panel on light page bg */}
+      {/* Tech stack bar */}
+      <TechStackBar />
+
+      {/* WHAT WE DO */}
       <section className="section">
         <Container className="_container">
           <div className="panel p-6 md:p-8">
@@ -84,7 +85,7 @@ export default function Home() {
               <Link
                 href="/work"
                 className="btn btn-ghost"
-                aria-label="View Work"
+                aria-label="View work"
               >
                 View Work
               </Link>
@@ -93,7 +94,7 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* REVIEWS — 2 clean cards */}
+      {/* REVIEWS */}
       <Reviews
         items={[
           {
@@ -111,7 +112,7 @@ export default function Home() {
         ]}
       />
 
-      {/* CTA on light bg */}
+      {/* CTA */}
       <section className="section">
         <Container className="_container text-center md:text-left">
           <h2>Ready to start your project?</h2>
