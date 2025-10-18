@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
-import TechStackBar from "@/components/TechStackBar";
+import TechStack from "@/components/TechStack";
 import Reviews from "@/components/Reviews";
 import Capabilities from "@/components/Capabilities";
+import Advantage from "@/components/Advantage";
+import FeaturedWork from "@/components/FeaturedWork";
 
 export default function Home() {
   return (
@@ -30,14 +32,14 @@ export default function Home() {
         <Container className="_container relative z-10 text-center md:text-left">
           <p className="eyebrow">RD DIGITAL TECHNOLOGY</p>
 
-          {/* Catchy, motivating headline */}
+          {/* Headline */}
           <h1 className="mt-3 font-extrabold leading-[1.05] text-[clamp(2.3rem,4.9vw,3.9rem)]">
             Build smarter.
             <br className="hidden sm:block" /> Automate faster.
             <br className="hidden sm:block" /> Grow with clarity.
           </h1>
 
-          {/* Crisp subhead */}
+          {/* Subhead */}
           <p className="mt-4 max-w-2xl fw-light text-[17px] opacity-95">
             We turn ideas into fast, data-driven websites with simple
             automations—so your business runs while you focus on what matters.
@@ -70,25 +72,28 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Tech stack bar */}
-      <TechStackBar />
+      <TechStack />
 
-      {/* Capabilities (replaces old “What we do”) */}
+      {/* What we build */}
       <Capabilities />
+
+      <Advantage />
+
+      <FeaturedWork />
 
       {/* REVIEWS */}
       <Reviews
         items={[
           {
             quote:
-              "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            author: "John Doe",
+              "Clean build and fast turnaround. Our contact form finally routes correctly—exactly what we needed.",
+            author: "J. Singh",
             meta: "Owner, Lakeside Fitness",
           },
           {
             quote:
-              "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            author: "Jane Smith",
+              "Automations save us hours each week. Leads go straight to our sheet and we get a weekly summary.",
+            author: "M. Patel",
             meta: "Clinic Manager",
           },
         ]}

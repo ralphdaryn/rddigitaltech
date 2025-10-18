@@ -6,7 +6,7 @@ type Capability = {
   title: string;
   blurb: string;
   image: string; // Unsplash URL
-  deliverables: string[]; // concrete outputs recruiters/clients understand
+  deliverables: string[]; // concrete outputs
   stack: string[]; // modern, hire-ready tools
   ctaHref: string;
   ctaLabel: string;
@@ -96,7 +96,7 @@ export default function Capabilities() {
             <h2>What We Build</h2>
             <p className="mt-3 max-w-2xl fw-light text-[color:var(--rd-muted)]">
               Websites built for speed and clarity, automations that cut
-              busywork and analytics that show what’s working — all aligned to
+              busywork, and analytics that show what’s working — all aligned to
               your goals.
             </p>
           </header>
@@ -104,7 +104,6 @@ export default function Capabilities() {
           <ul className="grid gap-4 md:grid-cols-3">
             {CAPABILITIES.map((c) => (
               <li key={c.key} className="card overflow-hidden p-0">
-                {/* Image */}
                 <div className="relative aspect-[16/9] w-full">
                   <Image
                     src={c.image}
@@ -116,7 +115,6 @@ export default function Capabilities() {
                   />
                 </div>
 
-                {/* Body */}
                 <div className="p-5">
                   <h3 className="fw-bold">{c.title}</h3>
                   <p className="mt-2 text-sm fw-regular text-[color:var(--rd-muted)]">
