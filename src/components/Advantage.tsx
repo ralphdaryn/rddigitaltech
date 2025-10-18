@@ -31,14 +31,18 @@ export default function Advantage() {
           <header className="mb-6">
             <h2>Our Advantage</h2>
             <p className="mt-3 max-w-2xl fw-light text-[color:var(--rd-muted)]">
-              Every RD Digitech build is engineered to perform, automate, and
-              measure—so your site becomes a system that grows your business.
+              Every RD Digitech build is engineered to be fast, automated, and
+              measurable — so your site becomes a system that grows your
+              business.
             </p>
           </header>
 
-          <ul className="grid gap-4 md:grid-cols-3">
+          <ul className="grid gap-6 md:grid-cols-3">
             {FEATURES.map((f) => (
-              <li key={f.title} className="card p-5">
+              <li
+                key={f.title}
+                className="card p-5 transition-transform duration-150 hover:-translate-y-0.5"
+              >
                 <div className="text-2xl">{f.icon}</div>
                 <h3 className="mt-2 fw-bold">{f.title}</h3>
                 <p className="mt-1 text-sm text-[color:var(--rd-muted)]">

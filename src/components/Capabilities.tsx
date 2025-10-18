@@ -101,9 +101,13 @@ export default function Capabilities() {
             </p>
           </header>
 
-          <ul className="grid gap-4 md:grid-cols-3">
+          <ul className="grid gap-6 md:grid-cols-3">
             {CAPABILITIES.map((c) => (
-              <li key={c.key} className="card overflow-hidden p-0">
+              <li
+                key={c.key}
+                className="card overflow-hidden p-0 transition-transform duration-150 hover:-translate-y-0.5"
+              >
+                {/* Image */}
                 <div className="relative aspect-[16/9] w-full">
                   <Image
                     src={c.image}
@@ -115,7 +119,8 @@ export default function Capabilities() {
                   />
                 </div>
 
-                <div className="p-5">
+                {/* Body */}
+                <div className="p-6 md:p-7">
                   <h3 className="fw-bold">{c.title}</h3>
                   <p className="mt-2 text-sm fw-regular text-[color:var(--rd-muted)]">
                     {c.blurb}

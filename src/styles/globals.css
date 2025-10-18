@@ -16,11 +16,11 @@
   --rd-bg: #f8f8f8; /* page background (lighter) */
   --rd-surface: #ffffff; /* cards/panels */
   --rd-muted: #6b7280; /* secondary text on light panels */
-  --rd-border: rgba(2, 6, 23, 0.08);
+  --rd-border: rgba(2, 6, 23, 0.1); /* slightly darker for separation */
 
   /* effects */
-  --rd-radius: 14px;
-  --rd-section-y: clamp(3rem, 6vw, 6rem);
+  --rd-radius: 12px; /* subtle refinement */
+  --rd-section-y: clamp(2.75rem, 5.5vw, 5.75rem);
   --rd-ring: rgba(68, 165, 189, 0.35);
 
   /* HERO gradient */
@@ -35,13 +35,6 @@
       transparent 60%
     ),
     linear-gradient(180deg, var(--rd-cyan) 0%, var(--rd-navy) 100%);
-
-  /* subtle glass sheen for panels if used on blue */
-  --rd-panel: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.01)
-  );
 }
 
 /* ===== Base ===== */
@@ -56,7 +49,7 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji";
   background: var(--rd-bg);
   color: var(--rd-ink);
-  font-size: 17px; /* subtle bump */
+  font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -109,7 +102,7 @@ h2 {
   color: var(--rd-ink);
   border: 1px solid var(--rd-border);
   border-radius: var(--rd-radius);
-  padding: 1rem;
+  padding: 0.75rem; /* keep lightweight; components add inner p-6 md:p-7 */
   box-shadow: 0 0 0 1px rgba(2, 6, 23, 0.04), 0 12px 34px rgba(2, 6, 23, 0.06);
 }
 

@@ -12,6 +12,15 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
+    title: "KSnap Studio",
+    summary: "Photography booking site with SEO, fast forms, and analytics.",
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80",
+    stack: ["Next.js", "TypeScript", "Vercel", "Resend", "GA4"],
+    href: "#",
+    result: "Bookings up in first month",
+  },
+  {
     title: "StepByStepStars",
     summary: "Events & payments with automated confirmations and dashboards.",
     image:
@@ -27,15 +36,6 @@ const PROJECTS: Project[] = [
       "https://images.unsplash.com/photo-1493723843671-1d655e66ac1c?auto=format&fit=crop&w=1600&q=80",
     stack: ["Next.js", "Tailwind", "Notion API", "Resend", "Plausible"],
     href: "#",
-  },
-  {
-    title: "KSnap Studio",
-    summary: "Photography booking site with SEO, fast forms, and analytics.",
-    image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80",
-    stack: ["Next.js", "TypeScript", "Vercel", "Resend", "GA4"],
-    href: "#",
-    result: "Bookings up in first month",
   },
 ];
 
@@ -60,9 +60,12 @@ export default function FeaturedWork() {
             </p>
           </header>
 
-          <ul className="grid gap-4 md:grid-cols-3">
+          <ul className="grid gap-6 md:grid-cols-3">
             {PROJECTS.map((p) => (
-              <li key={p.title} className="card overflow-hidden p-0">
+              <li
+                key={p.title}
+                className="card overflow-hidden p-0 transition-transform duration-150 hover:-translate-y-0.5"
+              >
                 <div className="relative aspect-[16/9] w-full">
                   <Image
                     src={p.image}
@@ -73,7 +76,7 @@ export default function FeaturedWork() {
                     priority
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-6 md:p-7">
                   <h3 className="fw-bold">{p.title}</h3>
                   <p className="mt-2 text-sm text-[color:var(--rd-muted)]">
                     {p.summary}
