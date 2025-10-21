@@ -65,7 +65,7 @@ export default function Home() {
               className="btn btn-ghost"
               aria-label="See case studies"
             >
-              View Results
+              View Work
             </Link>
           </div>
 
