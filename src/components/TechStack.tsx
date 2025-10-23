@@ -4,12 +4,13 @@ export default function TechStack() {
     "Next.js",
     "TypeScript",
     "Node.js",
+    "Express.js",
+    "Restful APIs",
     "PostgreSQL",
-    "Prisma",
-    "Vercel",
+    "AWS",
+    "Docker",
     "Auth.js",
     "GA4",
-    "Sentry",
   ] as const;
 
   return (
