@@ -1,56 +1,188 @@
-import { ReactNode } from "react";
+// components/Advantage.tsx
+import { ReactElement } from "react";
 
-type Feature = { icon: ReactNode; title: string; blurb: string };
+/** Optional metrics you can pass from the page (social proof helps conversion). */
+type Metrics = {
+  sitesLaunched?: number;     // e.g., 25
+  avgLighthouse?: number;     // e.g., 92
+  avgLoadMs?: number;         // e.g., 1200
+  monthlyReports?: boolean;   // true to show "Monthly reports included"
+};
+
+type Feature = {
+  icon: ReactElement;
+  title: string;
+  blurb: string;
+};
+
+const IconBolt = (
+  <svg aria-hidden viewBox="0 0 24 24" className="size-6">
+    <path fill="currentColor" d="M13 3L4 14h6l-1 7 9-11h-6l1-7z"/>
+  </svg>
+);
+
+const IconRobot = (
+  <svg aria-hidden viewBox="0 0 24 24" className="size-6">
+    <path fill="currentColor" d="M11 2h2v3h-2zM6 7a5 5 0 00-5 5v6a2 2 0 002 2h18a2 2 0 002-2v-6a5 5 0 00-5-5H6zm2.5 4A1.5 1.5 0 119 12.5 1.5 1.5 0 018.5 11zm7 0A1.5 1.5 0 1116 12.5 1.5 1.5 0 0115.5 11zM6 17h12v2H6z"/>
+  </svg>
+);
+
+const IconChart = (
+  <svg aria-hidden viewBox="0 0 24 24" className="size-6">
+    <path fill="currentColor" d="M3 3h2v18H3zM8 13h2v8H8zM13 9h2v12h-2zM18 5h2v16h-2z"/>
+  </svg>
+);
 
 const FEATURES: Feature[] = [
   {
-    icon: <span aria-hidden>⚡</span>,
+    icon: IconBolt,
     title: "Performance-First Websites",
     blurb:
-      "Built with Next.js & TypeScript, optimized for Core Web Vitals and mobile—fast, accessible, and SEO-ready.",
+      "Next.js + TypeScript builds tuned for Core Web Vitals—fast, accessible, and SEO-ready on mobile and desktop.",
   },
   {
-    icon: <span aria-hidden>🤖</span>,
+    icon: IconRobot,
     title: "Automation & AI",
     blurb:
-      "Connect tools with Zapier/n8n and OpenAI to route leads, send emails, and handle repetitive work automatically.",
+      "Connect forms and CRM with Zapier/n8n + OpenAI—auto-route leads, send follow-ups, and reduce manual busywork.",
   },
   {
-    icon: <span aria-hidden>📊</span>,
-    title: "Analytics with Clarity",
+    icon: IconChart,
+    title: "Analytics that Drive Action",
     blurb:
-      "GA4 + lightweight dashboards turn activity into insights—track conversions and see what’s working, in real time.",
+      "GA4 + lightweight dashboards show visits, conversions, and top pages in real time—so you know what’s working.",
   },
 ];
 
-export default function Advantage() {
+type Props = {
+  metrics?: Metrics;
+  onPrimaryCta?: () => void;
+};
+
+export default function Advantage({ metrics, onPrimaryCta }: Props) {
+  const headingId = "advantage-heading";
+
   return (
-    <section id="advantage" className="section">
+    <section id="advantage" aria-labelledby={headingId} className="section">
       <div className="_container">
-        <div className="panel p-6 md:p-8">
+        <div className="panel p-6 md:p-8 rounded-2xl">
           <header className="mb-6">
-            <h2>Our Advantage</h2>
-            <p className="mt-3 max-w-2xl fw-light text-[color:var(--rd-muted)]">
-              Every RD Digitech build is engineered to be fast, automated, and
-              measurable — so your site becomes a system that grows your
-              business.
+            <h2 id={headingId} className="text-2xl md:text-3xl font-semibold">
+              Why Teams Choose RD Digitech
+            </h2>
+            <p className="mt-3 max-w-2xl font-light text-[color:var(--rd-muted)]">
+              We ship fast, measurable websites—then prove it with analytics.
+              Build once, automate the busywork, and watch visits turn into customers.
             </p>
           </header>
 
-          <ul className="grid gap-6 md:grid-cols-3">
+          {/* Proof bar (optional metrics) */}
+          {(metrics?.sitesLaunched || metrics?.avgLighthouse || metrics?.avgLoadMs || metrics?.monthlyReports) && (
+            <ul
+              role="list"
+              className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm"
+            >
+              {metrics?.sitesLaunched && (
+                <li className="card rounded-xl p-3 border border-white/10">
+                  <span className="block font-semibold">{metrics.sitesLaunched}+</span>
+                  <span className="text-[color:var(--rd-muted)]">Sites launched</span>
+                </li>
+              )}
+              {metrics?.avgLighthouse && (
+                <li className="card rounded-xl p-3 border border-white/10">
+                  <span className="block font-semibold">{metrics.avgLighthouse}+</span>
+                  <span className="text-[color:var(--rd-muted)]">Avg Lighthouse score</span>
+                </li>
+              )}
+              {metrics?.avgLoadMs && (
+                <li className="card rounded-xl p-3 border border-white/10">
+                  <span className="block font-semibold">{Math.round(metrics.avgLoadMs)} ms</span>
+                  <span className="text-[color:var(--rd-muted)]">Median page load</span>
+                </li>
+              )}
+              {metrics?.monthlyReports && (
+                <li className="card rounded-xl p-3 border border-white/10">
+                  <span className="block font-semibold">Included</span>
+                  <span className="text-[color:var(--rd-muted)]">Monthly reports</span>
+                </li>
+              )}
+            </ul>
+          )}
+
+          <ul
+            role="list"
+            className="grid gap-4 sm:gap-5 md:gap-6 sm:grid-cols-2 md:grid-cols-3"
+          >
             {FEATURES.map((f) => (
               <li
                 key={f.title}
-                className="card p-5 transition-transform duration-150 hover:-translate-y-0.5"
+                className="group card p-5 rounded-2xl border border-[color:var(--rd-card-border,rgba(255,255,255,0.08))]
+                           bg-[color:var(--rd-card-bg,rgba(255,255,255,0.02))] shadow-sm outline-none transition
+                           motion-safe:duration-200 hover:-translate-y-0.5 hover:shadow
+                           focus-within:ring-2 focus-within:ring-cyan-400/40"
               >
-                <div className="text-2xl">{f.icon}</div>
-                <h3 className="mt-2 fw-bold">{f.title}</h3>
-                <p className="mt-1 text-sm text-[color:var(--rd-muted)]">
+                <div
+                  className="inline-flex items-center justify-center rounded-xl
+                             bg-[color:var(--rd-chip-bg,rgba(21,183,232,0.1))]
+                             p-2 ring-1 ring-[color:var(--rd-chip-ring,rgba(21,183,232,0.25))]"
+                  aria-hidden
+                >
+                  {f.icon}
+                </div>
+
+                <h3 className="mt-3 text-base md:text-lg font-semibold tracking-tight">
+                  {f.title}
+                </h3>
+
+                <p className="mt-1.5 text-sm leading-relaxed text-[color:var(--rd-muted)]">
                   {f.blurb}
                 </p>
+
+                {/* Micro-benefits for buyers (kept concise for scannability) */}
+                {f.title === "Performance-First Websites" && (
+                  <ul className="mt-3 text-sm text-[color:var(--rd-muted)] list-disc list-inside space-y-1">
+                    <li>90+ Lighthouse targets</li>
+                    <li>Accessible by default (WCAG-minded)</li>
+                    <li>SEO basics: meta, OG, sitemap, robots</li>
+                  </ul>
+                )}
+                {f.title === "Automation & AI" && (
+                  <ul className="mt-3 text-sm text-[color:var(--rd-muted)] list-disc list-inside space-y-1">
+                    <li>Lead routing to email/CRM</li>
+                    <li>Auto follow-ups & summaries</li>
+                    <li>Zero-copy data handoffs</li>
+                  </ul>
+                )}
+                {f.title === "Analytics that Drive Action" && (
+                  <ul className="mt-3 text-sm text-[color:var(--rd-muted)] list-disc list-inside space-y-1">
+                    <li>GA4 events for form submits & clicks</li>
+                    <li>Simple dashboard for traffic & conversions</li>
+                    <li>Privacy-respecting, lightweight scripts</li>
+                  </ul>
+                )}
+
+                {/* subtle affordance underline on hover */}
+                <div className="mt-3 h-px w-0 bg-[color:var(--rd-chip-ring,rgba(21,183,232,0.35))] transition-all motion-safe:duration-300 group-hover:w-12" />
               </li>
             ))}
           </ul>
+
+          {/* CTA row */}
+          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <button
+              type="button"
+              onClick={onPrimaryCta}
+              className="inline-flex items-center justify-center rounded-xl px-4 py-2.5
+                         bg-[color:var(--rd-cta,#15b7e8)] text-black font-medium
+                         hover:brightness-110 focus-visible:outline-none
+                         focus-visible:ring-2 focus-visible:ring-cyan-400/50 transition"
+            >
+              Get a Free Site & Analytics Check
+            </button>
+            <p className="text-sm text-[color:var(--rd-muted)]">
+              We’ll review speed, SEO, and tracking—then send a simple plan to boost visits & conversions.
+            </p>
+          </div>
         </div>
       </div>
     </section>
