@@ -68,7 +68,7 @@ export default function Advantage({ metrics, onPrimaryCta }: Props) {
         <div className="panel p-6 md:p-8 rounded-2xl">
           <header className="mb-6">
             <h2 id={headingId} className="text-2xl md:text-3xl font-semibold">
-              Why Teams Choose RD Digitech
+              Why Clients Choose RD Digitech
             </h2>
             <p className="mt-3 max-w-2xl font-light text-[color:var(--rd-muted)]">
               We ship fast, measurable websites—then prove it with analytics.
