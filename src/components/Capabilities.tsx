@@ -1,6 +1,5 @@
 // components/Capabilities.tsx
 import Image from "next/image";
-import Link from "next/link";
 import { ReactNode } from "react";
 
 type Capability = {
@@ -180,18 +179,6 @@ export default function Capabilities() {
                     ))}
                   </div>
                 ) : null}
-
-                <div className="mt-5">
-                  <Link
-                    href={c.ctaHref}
-                    className="inline-flex items-center justify-center rounded-xl px-4 py-2.5
-                               bg-[color:var(--rd-cta,#15b7e8)] text-black font-medium
-                               hover:brightness-110 focus-visible:outline-none
-                               focus-visible:ring-2 focus-visible:ring-cyan-400/50 transition"
-                  >
-                    {c.ctaLabel}
-                  </Link>
-                </div>
 
                 {/* subtle affordance line for continuity */}
                 <div className="mt-3 h-px w-0 bg-[color:var(--rd-chip-ring,rgba(21,183,232,0.35))] transition-all motion-safe:duration-300 group-hover:w-12" />
