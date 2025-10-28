@@ -166,23 +166,6 @@ export default function Advantage({ metrics, onPrimaryCta }: Props) {
               </li>
             ))}
           </ul>
-
-          {/* CTA row */}
-          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <button
-              type="button"
-              onClick={onPrimaryCta}
-              className="inline-flex items-center justify-center rounded-xl px-4 py-2.5
-                         bg-[color:var(--rd-cta,#15b7e8)] text-black font-medium
-                         hover:brightness-110 focus-visible:outline-none
-                         focus-visible:ring-2 focus-visible:ring-cyan-400/50 transition"
-            >
-              Get a Free Site & Analytics Check
-            </button>
-            <p className="text-sm text-[color:var(--rd-muted)]">
-              We’ll review speed, SEO, and tracking—then send a simple plan to boost visits & conversions.
-            </p>
-          </div>
         </div>
       </div>
     </section>
