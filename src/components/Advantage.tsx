@@ -1,12 +1,12 @@
-// components/Advantage.tsx
+// src/components/Advantage.tsx
 import { ReactElement } from "react";
 
 /** Optional metrics you can pass from the page (social proof helps conversion). */
 type Metrics = {
-  sitesLaunched?: number;     // e.g., 25
-  avgLighthouse?: number;     // e.g., 92
-  avgLoadMs?: number;         // e.g., 1200
-  monthlyReports?: boolean;   // true to show "Monthly reports included"
+  sitesLaunched?: number; // e.g., 25
+  avgLighthouse?: number; // e.g., 92
+  avgLoadMs?: number; // e.g., 1200
+  monthlyReports?: boolean; // true to show "Monthly reports included"
 };
 
 type Feature = {
@@ -17,19 +17,25 @@ type Feature = {
 
 const IconBolt = (
   <svg aria-hidden viewBox="0 0 24 24" className="size-6">
-    <path fill="currentColor" d="M13 3L4 14h6l-1 7 9-11h-6l1-7z"/>
+    <path fill="currentColor" d="M13 3L4 14h6l-1 7 9-11h-6l1-7z" />
   </svg>
 );
 
 const IconRobot = (
   <svg aria-hidden viewBox="0 0 24 24" className="size-6">
-    <path fill="currentColor" d="M11 2h2v3h-2zM6 7a5 5 0 00-5 5v6a2 2 0 002 2h18a2 2 0 002-2v-6a5 5 0 00-5-5H6zm2.5 4A1.5 1.5 0 119 12.5 1.5 1.5 0 018.5 11zm7 0A1.5 1.5 0 1116 12.5 1.5 1.5 0 0115.5 11zM6 17h12v2H6z"/>
+    <path
+      fill="currentColor"
+      d="M11 2h2v3h-2zM6 7a5 5 0 00-5 5v6a2 2 0 002 2h18a2 2 0 002-2v-6a5 5 0 00-5-5H6zm2.5 4A1.5 1.5 0 119 12.5 1.5 1.5 0 018.5 11zm7 0A1.5 1.5 0 1116 12.5 1.5 1.5 0 0115.5 11zM6 17h12v2H6z"
+    />
   </svg>
 );
 
 const IconChart = (
   <svg aria-hidden viewBox="0 0 24 24" className="size-6">
-    <path fill="currentColor" d="M3 3h2v18H3zM8 13h2v8H8zM13 9h2v12h-2zM18 5h2v16h-2z"/>
+    <path
+      fill="currentColor"
+      d="M3 3h2v18H3zM8 13h2v8H8zM13 9h2v12h-2zM18 5h2v16h-2z"
+    />
   </svg>
 );
 
@@ -56,7 +62,7 @@ const FEATURES: Feature[] = [
 
 type Props = {
   metrics?: Metrics;
-  onPrimaryCta?: () => void;
+  onPrimaryCta?: () => void; // optional CTA handler from parent
 };
 
 export default function Advantage({ metrics, onPrimaryCta }: Props) {
@@ -66,44 +72,75 @@ export default function Advantage({ metrics, onPrimaryCta }: Props) {
     <section id="advantage" aria-labelledby={headingId} className="section">
       <div className="_container">
         <div className="panel p-6 md:p-8 rounded-2xl">
-          <header className="mb-6">
-            <h2 id={headingId} className="text-2xl md:text-3xl font-semibold">
-              Why Clients Choose RD Digitech
-            </h2>
-            <p className="mt-3 max-w-2xl font-light text-[color:var(--rd-muted)]">
-              We ship fast, measurable websites—then prove it with analytics.
-              Build once, automate the busywork, and watch visits turn into customers.
-            </p>
+          <header className="mb-6 flex items-start justify-between gap-4">
+            <div>
+              <h2 id={headingId} className="text-2xl md:text-3xl font-semibold">
+                Why Clients Choose RD Digitech
+              </h2>
+              <p className="mt-3 max-w-2xl font-light text-[color:var(--rd-muted)]">
+                We ship fast, measurable websites—then prove it with analytics.
+                Build once, automate the busywork, and watch visits turn into
+                customers.
+              </p>
+            </div>
+
+            {onPrimaryCta && (
+              <button
+                type="button"
+                onClick={onPrimaryCta}
+                className="btn btn-primary shrink-0"
+                aria-label="Start your project"
+              >
+                Start Project
+              </button>
+            )}
           </header>
 
           {/* Proof bar (optional metrics) */}
-          {(metrics?.sitesLaunched || metrics?.avgLighthouse || metrics?.avgLoadMs || metrics?.monthlyReports) && (
+          {(metrics?.sitesLaunched ||
+            metrics?.avgLighthouse ||
+            metrics?.avgLoadMs ||
+            metrics?.monthlyReports) && (
             <ul
               role="list"
               className="mb-6 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm"
             >
               {metrics?.sitesLaunched && (
                 <li className="card rounded-xl p-3 border border-white/10">
-                  <span className="block font-semibold">{metrics.sitesLaunched}+</span>
-                  <span className="text-[color:var(--rd-muted)]">Sites launched</span>
+                  <span className="block font-semibold">
+                    {metrics.sitesLaunched}+
+                  </span>
+                  <span className="text-[color:var(--rd-muted)]">
+                    Sites launched
+                  </span>
                 </li>
               )}
               {metrics?.avgLighthouse && (
                 <li className="card rounded-xl p-3 border border-white/10">
-                  <span className="block font-semibold">{metrics.avgLighthouse}+</span>
-                  <span className="text-[color:var(--rd-muted)]">Avg Lighthouse score</span>
+                  <span className="block font-semibold">
+                    {metrics.avgLighthouse}+
+                  </span>
+                  <span className="text-[color:var(--rd-muted)]">
+                    Avg Lighthouse score
+                  </span>
                 </li>
               )}
               {metrics?.avgLoadMs && (
                 <li className="card rounded-xl p-3 border border-white/10">
-                  <span className="block font-semibold">{Math.round(metrics.avgLoadMs)} ms</span>
-                  <span className="text-[color:var(--rd-muted)]">Median page load</span>
+                  <span className="block font-semibold">
+                    {Math.round(metrics.avgLoadMs)} ms
+                  </span>
+                  <span className="text-[color:var(--rd-muted)]">
+                    Median page load
+                  </span>
                 </li>
               )}
               {metrics?.monthlyReports && (
                 <li className="card rounded-xl p-3 border border-white/10">
                   <span className="block font-semibold">Included</span>
-                  <span className="text-[color:var(--rd-muted)]">Monthly reports</span>
+                  <span className="text-[color:var(--rd-muted)]">
+                    Monthly reports
+                  </span>
                 </li>
               )}
             </ul>

@@ -3,7 +3,7 @@
 import { useMemo, useState, type FormEvent, type ReactNode } from "react";
 import Container from "@/components/Container";
 
-/* ---------- stable pricing tables (module scope) ---------- */
+/* ---------- stable pricing tables ---------- */
 const BASES = {
   website: 600,
   ecommerce: 1200,
@@ -19,10 +19,10 @@ const ADDONS = {
   automations: { label: "Forms → Email/Sheet/Zap", price: 150 },
   rush: { label: "Rush (7 days)", multiplier: 1.25 },
 } as const;
-
-/* --------------------------------------------------------- */
+/* ------------------------------------------ */
 
 export default function QuotePage() {
+  // spec toggles
   const [projectType, setProjectType] = useState<keyof typeof BASES>("website");
   const [pageCount, setPageCount] = useState(3);
   const [useCMS, setUseCMS] = useState(true);
@@ -32,10 +32,16 @@ export default function QuotePage() {
   const [useAutomations, setUseAutomations] = useState(true);
   const [rush, setRush] = useState(false);
 
+  // lead details
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [notes, setNotes] = useState("");
+
+  // spam honeypot
+  const [website, setWebsite] = useState(""); // if filled => bot
+
+  // ui
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -116,8 +122,18 @@ export default function QuotePage() {
     setError(null);
 
     try {
+      // if honeypot filled, silently succeed
+      if (website.trim()) {
+        setSuccess("Got it! I’ll send a tailored proposal to your email.");
+        setTimeout(() => {
+          window.location.href = "/thank-you";
+        }, 500);
+        setSubmitting(false);
+        return;
+      }
+
       const payload = {
-        lead: { name, email, company, notes },
+        lead: { name, email, company, notes, website },
         spec: {
           projectType,
           pageCount,
@@ -140,7 +156,7 @@ export default function QuotePage() {
 
       if (!res.ok) throw new Error(`Failed: ${res.status}`);
 
-      // GA4 event (optional)
+      // optional GA4 custom event
       if (typeof window !== "undefined") {
         // @ts-expect-error gtag optional
         window.gtag?.("event", "rd_quote_submitted", {
@@ -154,6 +170,10 @@ export default function QuotePage() {
       setEmail("");
       setCompany("");
       setNotes("");
+      setWebsite("");
+      setTimeout(() => {
+        window.location.href = "/thank-you";
+      }, 500);
     } catch (err) {
       console.error(err);
       setError(
@@ -177,9 +197,11 @@ export default function QuotePage() {
               Get a ballpark now. I’ll follow up with a tailored proposal,
               timeline, and next steps.
             </p>
+            <BuiltWith />
           </header>
 
-          <div className="grid md:grid-cols-2 gap-6 items-start">
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 items-start">
+            {/* Spec form */}
             <section className="panel p-5 md:p-6 rounded-2xl">
               <h2 className="text-lg fw-bold mb-3">1) Project Spec</h2>
               <div className="grid gap-4">
@@ -249,6 +271,7 @@ export default function QuotePage() {
               </div>
             </section>
 
+            {/* Quote card */}
             <section className="panel p-5 md:p-6 rounded-2xl">
               <h2 className="text-lg fw-bold mb-3">2) Instant Quote</h2>
               <ul className="divide-y divide-[var(--rd-border)] mb-3">
@@ -265,7 +288,7 @@ export default function QuotePage() {
               <KeyRow label="Deposit (40%)" value={`$${quote.deposit}`} />
               <KeyRow label="Remainder" value={`$${quote.remainder}`} />
 
-              <div className="mt-4 card p-3 rounded-xl">
+              <div className="mt-4 card p-4 rounded-xl">
                 <div className="flex items-end justify-between">
                   <div>
                     <div className="text-xs text-[color:var(--rd-muted)]">
@@ -275,7 +298,7 @@ export default function QuotePage() {
                       ${quote.total}
                     </div>
                   </div>
-                  <div className="text-xs text-[color:var(--rd-muted)]">
+                  <div className="text-xs text-[color:var(--rd-muted)] text-right">
                     Estimates only; final proposal by email.
                   </div>
                 </div>
@@ -283,6 +306,7 @@ export default function QuotePage() {
             </section>
           </div>
 
+          {/* Lead form */}
           <form
             onSubmit={handleSubmit}
             className="panel p-5 md:p-6 rounded-2xl mt-6"
@@ -313,6 +337,7 @@ export default function QuotePage() {
                   onChange={(e) => setCompany(e.target.value)}
                 />
               </Field>
+
               <div className="md:col-span-3">
                 <label className="label">Notes (what success looks like)</label>
                 <textarea
@@ -322,7 +347,20 @@ export default function QuotePage() {
                   placeholder="e.g., 10 bookings/month, faster site, collect emails, etc."
                 />
               </div>
+
+              {/* Honeypot (hidden to humans) */}
+              <div className="hidden">
+                <label className="label">Website</label>
+                <input
+                  className="input"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  autoComplete="off"
+                  tabIndex={-1}
+                />
+              </div>
             </div>
+
             <div className="mt-5 flex items-center gap-3">
               <button
                 disabled={submitting}
@@ -333,10 +371,40 @@ export default function QuotePage() {
               {success && <p className="text-emerald-600 text-sm">{success}</p>}
               {error && <p className="text-red-600 text-sm">{error}</p>}
             </div>
+
             <p className="text-xs text-[color:var(--rd-muted)] mt-2">
               By submitting, you agree to hear from RD Digitech. No spam—ever.
             </p>
           </form>
+
+          {/* Why this helps a Rogers team (portfolio angle) */}
+          <section className="panel p-5 md:p-6 rounded-2xl mt-6">
+            <h2 className="text-lg fw-bold">
+              Engineering Notes (for reviewers)
+            </h2>
+            <ul className="mt-2 list-disc list-inside text-sm text-[color:var(--rd-muted)] space-y-1">
+              <li>
+                Typed pricing engine with deterministic breakdown and
+                memoization.
+              </li>
+              <li>
+                Clean separation of concerns (spec → quote → lead payload) to
+                swap backends easily.
+              </li>
+              <li>
+                Edge-friendly function target (Netlify) with email + optional
+                Sheets webhook for ops.
+              </li>
+              <li>
+                Accessibility: labelled controls, keyboard navigable, visible
+                focus styles.
+              </li>
+              <li>
+                Analytics hook (GA4 event) to prove conversion impact of UI
+                changes.
+              </li>
+            </ul>
+          </section>
         </Container>
       </section>
     </main>
@@ -392,6 +460,29 @@ function KeyRow({ label, value }: { label: string; value: string }) {
     <div className="flex items-center justify-between text-sm">
       <span className="text-[color:var(--rd-muted)]">{label}</span>
       <span className="fw-bold">{value}</span>
+    </div>
+  );
+}
+
+function BuiltWith() {
+  const stack = [
+    "Next.js",
+    "TypeScript",
+    "Tailwind",
+    "Netlify Functions",
+    "Resend",
+    "GA4",
+  ];
+  return (
+    <div className="mt-4 flex flex-wrap gap-2">
+      {stack.map((t) => (
+        <span
+          key={t}
+          className="inline-flex items-center rounded-md border border-[var(--rd-border)] bg-white/70 px-2 py-1 text-xs font-medium text-black/80"
+        >
+          {t}
+        </span>
+      ))}
     </div>
   );
 }
