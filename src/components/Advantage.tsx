@@ -1,10 +1,10 @@
-// src/components/Advantage.tsx
+// components/Advantage.tsx
 import { ReactElement } from "react";
 
 /** Optional metrics you can pass from the page (social proof helps conversion). */
 type Metrics = {
   sitesLaunched?: number; // e.g., 25
-  avgLighthouse?: number; // e.g., 92
+  avgLighthouse?: number; // kept in type so your existing calls don't error, but not displayed
   avgLoadMs?: number; // e.g., 1200
   monthlyReports?: boolean; // true to show "Monthly reports included"
 };
@@ -62,43 +62,28 @@ const FEATURES: Feature[] = [
 
 type Props = {
   metrics?: Metrics;
-  onPrimaryCta?: () => void; // optional CTA handler from parent
 };
 
-export default function Advantage({ metrics, onPrimaryCta }: Props) {
+export default function Advantage({ metrics }: Props) {
   const headingId = "advantage-heading";
 
   return (
     <section id="advantage" aria-labelledby={headingId} className="section">
       <div className="_container">
         <div className="panel p-6 md:p-8 rounded-2xl">
-          <header className="mb-6 flex items-start justify-between gap-4">
-            <div>
-              <h2 id={headingId} className="text-2xl md:text-3xl font-semibold">
-                Why Clients Choose RD Digitech
-              </h2>
-              <p className="mt-3 max-w-2xl font-light text-[color:var(--rd-muted)]">
-                We ship fast, measurable websites—then prove it with analytics.
-                Build once, automate the busywork, and watch visits turn into
-                customers.
-              </p>
-            </div>
-
-            {onPrimaryCta && (
-              <button
-                type="button"
-                onClick={onPrimaryCta}
-                className="btn btn-primary shrink-0"
-                aria-label="Start your project"
-              >
-                Start Project
-              </button>
-            )}
+          <header className="mb-6">
+            <h2 id={headingId} className="text-2xl md:text-3xl font-semibold">
+              Why Clients Choose RD Digitech
+            </h2>
+            <p className="mt-3 max-w-2xl font-light text-[color:var(--rd-muted)]">
+              We ship fast, measurable websites—then prove it with analytics.
+              Build once, automate the busywork, and watch visits turn into
+              customers.
+            </p>
           </header>
 
           {/* Proof bar (optional metrics) */}
           {(metrics?.sitesLaunched ||
-            metrics?.avgLighthouse ||
             metrics?.avgLoadMs ||
             metrics?.monthlyReports) && (
             <ul
@@ -115,17 +100,8 @@ export default function Advantage({ metrics, onPrimaryCta }: Props) {
                   </span>
                 </li>
               )}
-              {metrics?.avgLighthouse && (
-                <li className="card rounded-xl p-3 border border-white/10">
-                  <span className="block font-semibold">
-                    {metrics.avgLighthouse}+
-                  </span>
-                  <span className="text-[color:var(--rd-muted)]">
-                    Avg Lighthouse score
-                  </span>
-                </li>
-              )}
-              {metrics?.avgLoadMs && (
+              {/* Avg Lighthouse intentionally not displayed */}
+              {typeof metrics?.avgLoadMs === "number" && (
                 <li className="card rounded-xl p-3 border border-white/10">
                   <span className="block font-semibold">
                     {Math.round(metrics.avgLoadMs)} ms
@@ -175,7 +151,6 @@ export default function Advantage({ metrics, onPrimaryCta }: Props) {
                   {f.blurb}
                 </p>
 
-                {/* Micro-benefits for buyers (kept concise for scannability) */}
                 {f.title === "Performance-First Websites" && (
                   <ul className="mt-3 text-sm text-[color:var(--rd-muted)] list-disc list-inside space-y-1">
                     <li>90+ Lighthouse targets</li>
@@ -198,7 +173,6 @@ export default function Advantage({ metrics, onPrimaryCta }: Props) {
                   </ul>
                 )}
 
-                {/* subtle affordance underline on hover */}
                 <div className="mt-3 h-px w-0 bg-[color:var(--rd-chip-ring,rgba(21,183,232,0.35))] transition-all motion-safe:duration-300 group-hover:w-12" />
               </li>
             ))}

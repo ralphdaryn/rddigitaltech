@@ -1,3 +1,4 @@
+// src/app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
@@ -15,7 +16,6 @@ export default function Home() {
         className="section bg-hero relative overflow-hidden on-blue"
         id="home"
       >
-        {/* Background image */}
         <Image
           src="/hero.png"
           alt=""
@@ -25,33 +25,26 @@ export default function Home() {
           aria-hidden="true"
           className="object-cover opacity-40 select-none pointer-events-none"
         />
-        {/* Gradient overlay for contrast (slightly lighter for clarity) */}
         <div
           aria-hidden
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,33,88,0.28),rgba(1,33,88,0.45))]"
         />
 
-        {/* Content */}
-        <Container className="_container relative z-10 text-center md:text-left">
+        <Container className="relative z-10 text-center md:text-left">
           <p className="eyebrow">RD DIGITAL TECHNOLOGY</p>
 
-          {/* Constrain text width for readability */}
           <div className="max-w-2xl">
-            {/* Headline */}
             <h1 className="mt-3 font-extrabold leading-[1.05] text-[clamp(2.3rem,4.9vw,3.9rem)]">
               Build smarter.
               <br className="hidden sm:block" /> Automate faster.
               <br className="hidden sm:block" /> Grow with clarity.
             </h1>
-
-            {/* Subhead */}
             <p className="mt-4 fw-light text-[17px] opacity-95">
               We turn ideas into fast, data-driven websites with simple
               automations—so your business runs while you focus on what matters.
             </p>
           </div>
 
-          {/* CTAs */}
           <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start text-[15px]">
             <Link
               href="/contact"
@@ -69,7 +62,6 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Value strip */}
           <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 justify-center md:justify-start text-sm opacity-90">
             <li>1-week turnaround</li>
             <li>Mobile performance</li>
@@ -90,7 +82,15 @@ export default function Home() {
 
       {/* Why it works */}
       <section id="advantage">
-        <Advantage />
+        <Advantage
+          metrics={{
+            sitesLaunched: 18,
+            // avgLighthouse intentionally omitted
+            avgLoadMs: 1200,
+            monthlyReports: true,
+          }}
+          // cta removed per request
+        />
       </section>
 
       {/* Proof */}
@@ -120,7 +120,7 @@ export default function Home() {
 
       {/* CTA */}
       <section className="section">
-        <Container className="_container text-center md:text-left">
+        <Container className="text-center md:text-left">
           <h2>Ready to start your project?</h2>
           <p className="mt-2 fw-light text-[color:var(--rd-muted)]">
             Let’s launch something fast, automated, and easy to measure.
