@@ -47,7 +47,6 @@ const CAPABILITIES: Capability[] = [
       "Drizzle ORM",
       "PostgreSQL (Neon/Supabase)",
     ],
-    proof: ["≤1.5s LCP target", "Sitemaps & OG tags", "WCAG-minded UI"],
     ctaHref: "/work",
     ctaLabel: "See websites",
   },
@@ -72,7 +71,6 @@ const CAPABILITIES: Capability[] = [
       "Webhooks",
       "Postmark",
     ],
-    proof: ["<5 min response SLA (automated)", "Zero-copy handoffs"],
     ctaHref: "/contact",
     ctaLabel: "Automate my flow",
   },
@@ -97,7 +95,6 @@ const CAPABILITIES: Capability[] = [
       "dbt (light)",
       "LogRocket/OpenReplay",
     ],
-    proof: ["Privacy-first scripts", "Goal tracking & funnels"],
     ctaHref: "/contact",
     ctaLabel: "Measure results",
   },
@@ -164,21 +161,7 @@ export default function Capabilities() {
                   ))}
                 </div>
 
-                {/* Proof badges (optional) */}
-                {c.proof?.length ? (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {c.proof.map((p) => (
-                      <span
-                        key={p}
-                        className="inline-flex items-center rounded-full bg-[color:var(--rd-chip-bg,rgba(21,183,232,0.1))]
-                                   px-2 py-1 text-xs font-medium text-[color:var(--rd-muted)]
-                                   ring-1 ring-[color:var(--rd-chip-ring,rgba(21,183,232,0.25))]"
-                      >
-                        {p}
-                      </span>
-                    ))}
-                  </div>
-                ) : null}
+                {/* Proof badges intentionally omitted (no proof arrays present) */}
 
                 {/* subtle affordance line for continuity */}
                 <div className="mt-3 h-px w-0 bg-[color:var(--rd-chip-ring,rgba(21,183,232,0.35))] transition-all motion-safe:duration-300 group-hover:w-12" />
