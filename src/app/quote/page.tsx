@@ -376,35 +376,6 @@ export default function QuotePage() {
               By submitting, you agree to hear from RD Digitech. No spam—ever.
             </p>
           </form>
-
-          {/* Why this helps a Rogers team (portfolio angle) */}
-          <section className="panel p-5 md:p-6 rounded-2xl mt-6">
-            <h2 className="text-lg fw-bold">
-              Engineering Notes (for reviewers)
-            </h2>
-            <ul className="mt-2 list-disc list-inside text-sm text-[color:var(--rd-muted)] space-y-1">
-              <li>
-                Typed pricing engine with deterministic breakdown and
-                memoization.
-              </li>
-              <li>
-                Clean separation of concerns (spec → quote → lead payload) to
-                swap backends easily.
-              </li>
-              <li>
-                Edge-friendly function target (Netlify) with email + optional
-                Sheets webhook for ops.
-              </li>
-              <li>
-                Accessibility: labelled controls, keyboard navigable, visible
-                focus styles.
-              </li>
-              <li>
-                Analytics hook (GA4 event) to prove conversion impact of UI
-                changes.
-              </li>
-            </ul>
-          </section>
         </Container>
       </section>
     </main>
