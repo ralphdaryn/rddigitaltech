@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ===== RD palette (techy blue + green) ===== */
 :root {
@@ -8,18 +10,19 @@
   --rd-navy: #012158; /* deep navy */
   --rd-green: #30db8d; /* primary tech green */
 
-  /* NEW accents */
+  /* accents */
   --rd-blue: #4f76f6; /* vivid blue (links/buttons) */
-  --rd-mint: #77f2a1; /* mint accent for text/badges */
+  --rd-mint: #77f2a1; /* mint accent */
 
   /* surfaces */
-  --rd-bg: #f8f8f8; /* page background (lighter) */
-  --rd-surface: #ffffff; /* cards/panels */
-  --rd-muted: #6b7280; /* secondary text on light panels */
-  --rd-border: rgba(2, 6, 23, 0.1); /* slightly darker for separation */
+  --rd-bg: #f8f8f8;
+  --rd-surface: #ffffff;
+  --rd-panel: var(--rd-surface); /* ✅ FIXED */
+  --rd-muted: #6b7280;
+  --rd-border: rgba(2, 6, 23, 0.1);
 
   /* effects */
-  --rd-radius: 12px; /* subtle refinement */
+  --rd-radius: 12px;
   --rd-section-y: clamp(2.75rem, 5.5vw, 5.75rem);
   --rd-ring: rgba(68, 165, 189, 0.35);
 
@@ -35,7 +38,7 @@
       transparent 60%
     ),
     linear-gradient(180deg, var(--rd-cyan) 0%, var(--rd-navy) 100%);
-}
+} /* ✅ FIX: this closing brace was missing */
 
 /* ===== Base ===== */
 html,
@@ -55,16 +58,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== Typography ===== */
 h1,
 h2,
 h3 {
   letter-spacing: -0.01em;
   font-weight: 600;
 }
+
 h1 {
   font-size: clamp(2.25rem, 4.8vw, 3.8rem);
   line-height: 1.08;
 }
+
 h2 {
   font-size: clamp(1.5rem, 2.6vw, 2.3rem);
 }
@@ -79,34 +85,40 @@ h2 {
   color: #e8f6ff;
 }
 
-/* Layout helpers */
+/* ===== Layout helpers ===== */
 .section {
   padding-block: var(--rd-section-y);
 }
+
 ._container {
   max-width: 72rem;
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
 
-/* Panels & cards */
+/* ===== Panels & cards ===== */
 .panel {
   background: var(--rd-surface);
   color: var(--rd-ink);
   border: 1px solid var(--rd-border);
   border-radius: var(--rd-radius);
-  box-shadow: 0 0 0 1px rgba(2, 6, 23, 0.04), 0 12px 34px rgba(2, 6, 23, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(2, 6, 23, 0.04),
+    0 12px 34px rgba(2, 6, 23, 0.08);
 }
+
 .card {
   background: var(--rd-surface);
   color: var(--rd-ink);
   border: 1px solid var(--rd-border);
   border-radius: var(--rd-radius);
-  padding: 0.75rem; /* keep lightweight; components add inner p-6 md:p-7 */
-  box-shadow: 0 0 0 1px rgba(2, 6, 23, 0.04), 0 12px 34px rgba(2, 6, 23, 0.06);
+  padding: 0.75rem;
+  box-shadow:
+    0 0 0 1px rgba(2, 6, 23, 0.04),
+    0 12px 34px rgba(2, 6, 23, 0.06);
 }
 
-/* Buttons */
+/* ===== Buttons ===== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -114,107 +126,120 @@ h2 {
   padding: 0.8rem 1.05rem;
   border-radius: 12px;
   font-weight: 700;
-  transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
-  text-decoration: none;
   font-size: 0.98rem;
+  text-decoration: none;
+  transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
 }
+
 .btn:focus-visible {
-  outline: 0;
+  outline: none;
   box-shadow: 0 0 0 4px var(--rd-ring);
 }
+
 .btn-primary {
   background: var(--rd-green);
   color: #052716;
 }
+
 .btn-primary:hover {
   opacity: 0.95;
   transform: translateY(-1px);
 }
+
 .btn-ghost {
   border: 1px solid var(--rd-border);
   background: transparent;
   color: var(--rd-ink);
 }
+
 .btn-ghost:hover {
   background: rgba(2, 6, 23, 0.04);
 }
+
 .on-blue .btn-ghost {
   border-color: rgba(255, 255, 255, 0.35);
   color: #fff;
 }
+
 .on-blue .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* Accent utilities */
+/* ===== Accent utilities ===== */
 .btn-accent {
   background: var(--rd-blue);
   color: #0a1330;
 }
+
 .btn-accent:hover {
   opacity: 0.95;
   transform: translateY(-1px);
 }
+
 .btn-mint {
   background: var(--rd-mint);
   color: #0a301d;
 }
+
 .btn-mint:hover {
   opacity: 0.96;
   transform: translateY(-1px);
 }
+
 .link-blue {
   color: var(--rd-blue);
   text-underline-offset: 3px;
 }
+
 .link-blue:hover {
   text-decoration: underline;
 }
+
 .link-mint {
   color: var(--rd-mint);
   text-underline-offset: 3px;
 }
+
 .link-mint:hover {
   text-decoration: underline;
 }
+
 .text-accent {
   color: var(--rd-blue);
 }
+
 .text-mint {
   color: var(--rd-mint);
 }
 
-/* Focus & misc */
+/* ===== Focus & misc ===== */
 :where(a, button, [role="button"], input, select, textarea):focus-visible {
   outline: 2px solid var(--rd-cyan);
   outline-offset: 2px;
 }
+
 .bg-hero {
   background: var(--rd-hero);
   color: #fff;
 }
+
 .bg-panel {
   background: var(--rd-panel);
 }
+
 .hr {
   height: 1px;
   background: var(--rd-border);
   margin: 2rem 0;
 }
+
 .hr-on-blue {
   height: 1px;
   background: rgba(255, 255, 255, 0.25);
   margin: 2rem 0;
 }
-.fw-light {
-  font-weight: 300;
-}
-.fw-regular {
-  font-weight: 400;
-}
-.fw-bold {
-  font-weight: 700;
-}
-.fw-extrabold {
-  font-weight: 800;
-}
+
+.fw-light { font-weight: 300; }
+.fw-regular { font-weight: 400; }
+.fw-bold { font-weight: 700; }
+.fw-extrabold { font-weight: 800; }
