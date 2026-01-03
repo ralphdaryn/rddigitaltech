@@ -2,20 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";
-import TechStack from "@/components/TechStack";
 import Reviews from "@/components/Reviews";
 import Capabilities from "@/components/Capabilities";
 import Advantage from "@/components/Advantage";
 import FeaturedWork from "@/components/FeaturedWork";
+import styles from "./page.module.scss";
 
 export default function Home() {
   return (
     <main>
       {/* HERO */}
-      <section
-        className="section bg-hero relative overflow-hidden on-blue"
-        id="home"
-      >
+      <section className={`section bg-hero on-blue ${styles.hero}`} id="home">
         <Image
           src="/hero.png"
           alt=""
@@ -23,29 +20,27 @@ export default function Home() {
           priority
           sizes="100vw"
           aria-hidden="true"
-          className="object-cover opacity-40 select-none pointer-events-none"
+          className={styles.heroImage}
         />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,33,88,0.28),rgba(1,33,88,0.45))]"
-        />
+        <div aria-hidden className={styles.heroOverlay} />
 
-        <Container className="relative z-10 text-center md:text-left">
+        <Container className={`text-center md:text-left ${styles.heroInner}`}>
           <p className="eyebrow">RD DIGITAL TECHNOLOGY</p>
 
           <div className="max-w-2xl">
-            <h1 className="mt-3 font-extrabold leading-[1.05] text-[clamp(2.3rem,4.9vw,3.9rem)]">
+            <h1 className={styles.heroTitle}>
               Build smarter.
               <br className="hidden sm:block" /> Automate faster.
               <br className="hidden sm:block" /> Grow with clarity.
             </h1>
-            <p className="mt-4 fw-light text-[17px] opacity-95">
+
+            <p className={styles.heroBody}>
               We turn ideas into fast, data-driven websites with simple
               automations—so your business runs while you focus on what matters.
             </p>
           </div>
 
-          <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start text-[15px]">
+          <div className={styles.heroCtas}>
             <Link
               href="/contact"
               className="btn btn-primary"
@@ -53,6 +48,7 @@ export default function Home() {
             >
               Start Project
             </Link>
+
             <Link
               href="/work"
               className="btn btn-ghost"
@@ -62,17 +58,12 @@ export default function Home() {
             </Link>
           </div>
 
-          <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 justify-center md:justify-start text-sm opacity-90">
+          <ul className={styles.heroBadges}>
             <li>1-week turnaround</li>
             <li>Mobile performance</li>
             <li>Clear analytics</li>
           </ul>
         </Container>
-      </section>
-
-      {/* Tech ecosystem */}
-      <section id="tech">
-        <TechStack />
       </section>
 
       {/* What we build */}
@@ -85,11 +76,9 @@ export default function Home() {
         <Advantage
           metrics={{
             sitesLaunched: 18,
-            // avgLighthouse intentionally omitted
             avgLoadMs: 1200,
             monthlyReports: true,
           }}
-          // cta removed per request
         />
       </section>
 
@@ -122,7 +111,7 @@ export default function Home() {
       <section className="section">
         <Container className="text-center md:text-left">
           <h2>Ready to start your project?</h2>
-          <p className="mt-2 fw-light text-[color:var(--rd-muted)]">
+          <p className={styles.ctaText}>
             Let’s launch something fast, automated, and easy to measure.
           </p>
           <Link
